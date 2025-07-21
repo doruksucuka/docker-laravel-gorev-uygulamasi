@@ -39,6 +39,9 @@
                             {{ $task->title }}
                         </a>
                     </h3>
+                    @if($task->category)
+                        <p class="text-xs text-gray-400 mt-1">{{ $task->category->name }}</p>
+                    @endif
                     <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{{ $task->description }}</p>
                     <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Tarih: {{ $task->created_at->format('d.m.Y H:i') }}</p>
 

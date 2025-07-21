@@ -27,6 +27,13 @@
                             <p class="mt-1 text-gray-800 dark:text-gray-200">{{ $task->description ?? 'Açıklama yok.' }}</p>
                         </div>
 
+                        @if($task->category)
+                        <div>
+                            <span class="text-md font-medium text-gray-700 dark:text-gray-300">Kategori:</span>
+                            <p class="mt-1 text-gray-800 dark:text-gray-200">{{ $task->category->name }}</p>
+                        </div>
+                        @endif
+
                         <div>
                             <span class="text-md font-medium text-gray-700 dark:text-gray-300">Son Tarih:</span>
                             <p class="mt-1 text-gray-800 dark:text-gray-200">
