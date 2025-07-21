@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -35,7 +36,8 @@ class TaskController extends Controller
 
     public function create()
     {
-        return view('tasks.create');
+        $categories = Category::all();
+        return view('tasks.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -43,6 +45,7 @@ class TaskController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         Task::create([
@@ -50,6 +53,7 @@ class TaskController extends Controller
             'description' => $validated['description'],
             'is_completed' => false,
             'user_id' => Auth::id(),
+            'category_id' => $validated['category_id'] ?? null,
         ]);
 
         return redirect()->route('tasks.index');
@@ -65,7 +69,8 @@ class TaskController extends Controller
     {
         $task = Task::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
         $this->authorize('update', $task);
-        return view('tasks.edit', compact('task'));
+        $categories = Category::all();
+        return view('tasks.edit', compact('task', 'categories'));
     }
 
     public function update(Request $request, Task $task)
@@ -75,6 +80,7 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'due_date' => 'nullable|date',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         $task->update($validated);
