@@ -11,6 +11,7 @@ class TaskController extends Controller
 {
     use AuthorizesRequests;
     
+    
     public function index()
     {
         $query = Task::where('user_id', Auth::id());
