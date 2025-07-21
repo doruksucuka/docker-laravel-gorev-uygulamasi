@@ -27,7 +27,7 @@ docker compose exec app php artisan migrate
 
 Uygulama:
 - Laravel: http://localhost:8000
-- PhpMyAdmin: http://localhost:8080
+- PhpMyAdmin: http://localhost:8081
 
 ## 🔐 Giriş Bilgileri (Demo)
 
