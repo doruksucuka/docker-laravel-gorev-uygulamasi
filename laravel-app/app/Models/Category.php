@@ -9,8 +9,8 @@ class Category extends Model
 {
     protected $fillable = ['name'];
 
-    public function tasks(): HasMany
+    public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->belongsToMany(Task::class);
     }
 }

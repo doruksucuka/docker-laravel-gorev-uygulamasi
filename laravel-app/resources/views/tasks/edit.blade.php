@@ -41,16 +41,16 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="category_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Kategori</label>
-                            <select name="category_id" id="category_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:text-white">
-                                <option value="">Seçiniz</option>
+                            <label for="categories" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Kategoriler</label>
+                            <select name="categories[]" id="categories" multiple
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:text-white">
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" @selected(old('category_id', $task->category_id) == $category->id)>{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}"
+                                        @if ($task->categories->contains($category->id)) selected @endif>
+                                        {{ $category->name }}
+                                    </option>
                                 @endforeach
                             </select>
-                            @error('category_id')
-                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
                         </div>
 
                         <div class="flex justify-end">

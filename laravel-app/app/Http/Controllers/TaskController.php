@@ -42,21 +42,25 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'category_id' => 'nullable|exists:categories,id',
+            'due_date' => 'nullable|date',
+            'categories' => 'nullable|array',
+            'categories.*' => 'exists:categories,id',
         ]);
 
-        Task::create([
-            'title' => $validated['title'],
-            'description' => $validated['description'],
-            'is_completed' => false,
-            'user_id' => Auth::id(),
-            'category_id' => $validated['category_id'] ?? null,
+        $task = auth()->user()->tasks()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
         ]);
 
-        return redirect()->route('tasks.index');
+        if ($request->has('categories')) {
+            $task->categories()->attach($request->categories);
+        }
+
+        return redirect()->route('tasks.index')->with('success', 'Görev oluşturuldu');
     }
 
     public function show(Task $task)
@@ -65,10 +69,10 @@ class TaskController extends Controller
         return view('tasks.show', compact('task'));
     }
 
-    public function edit(string $id)
+    public function edit(Task $task)
     {
-        $task = Task::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
         $this->authorize('update', $task);
+
         $categories = Category::all();
         return view('tasks.edit', compact('task', 'categories'));
     }
@@ -76,16 +80,24 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
         $this->authorize('update', $task);
-        $validated = $request->validate([
+
+        $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'due_date' => 'nullable|date',
-            'category_id' => 'nullable|exists:categories,id',
+            'categories' => 'nullable|array',
+            'categories.*' => 'exists:categories,id',
         ]);
 
-        $task->update($validated);
+        $task->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
+        ]);
 
-        return redirect()->route('tasks.index')->with('success', 'Görev güncellendi.');
+        $task->categories()->sync($request->categories ?? []);
+
+        return redirect()->route('tasks.index')->with('success', 'Görev güncellendi');
     }
 
     public function destroy(Task $task)
