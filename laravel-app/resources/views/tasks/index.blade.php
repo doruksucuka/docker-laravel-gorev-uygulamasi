@@ -39,8 +39,16 @@
                             {{ $task->title }}
                         </a>
                     </h3>
-                    @if($task->category)
-                        <p class="text-xs text-gray-400 mt-1">{{ $task->category->name }}</p>
+                    @if($task->categories && $task->categories->count())
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            @foreach ($task->categories as $category)
+                                <span class="text-xs px-2 py-1 rounded font-medium 
+                                             bg-blue-200 text-blue-900 
+                                             dark:bg-blue-500 dark:text-white">
+                                    {{ $category->name }}
+                                </span>
+                            @endforeach
+                        </div>
                     @endif
                     <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{{ $task->description }}</p>
                     <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Tarih: {{ $task->created_at->format('d.m.Y H:i') }}</p>
