@@ -34,24 +34,33 @@
 
             @forelse ($tasks as $task)
                 <div class="bg-white dark:bg-gray-800 shadow-md rounded-md p-5 mb-5 border dark:border-gray-700">
-                    <h3 class="text-lg font-semibold {{ $task->is_completed ? 'text-green-400' : 'text-white' }}">
+                    <h3 class="text-base md:text-lg font-semibold {{ $task->is_completed ? 'text-green-400' : 'text-white' }}">
                         <a href="{{ route('tasks.show', $task) }}" class="hover:underline">
                             {{ $task->title }}
                         </a>
                     </h3>
                     @if($task->categories && $task->categories->count())
                         <div class="flex flex-wrap gap-2 mt-2">
+                            @php
+                                $badgeColors = [
+                                    'bg-purple-500',
+                                    'bg-yellow-500',
+                                    'bg-pink-500',
+                                    'bg-green-500',
+                                    'bg-indigo-500',
+                                ];
+                            @endphp
                             @foreach ($task->categories as $category)
-                                <span class="text-xs px-2 py-1 rounded font-medium 
-                                             bg-blue-200 text-blue-900 
-                                             dark:bg-blue-500 dark:text-white">
+                                <span class="px-3 py-1.5 text-xs rounded font-medium text-gray-100 {{ $badgeColors[$loop->index % count($badgeColors)] }}">
                                     {{ $category->name }}
                                 </span>
                             @endforeach
                         </div>
                     @endif
                     <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{{ $task->description }}</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Tarih: {{ $task->created_at->format('d.m.Y H:i') }}</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                        <span class="mr-1">📅</span>{{ $task->created_at->format('d.m.Y H:i') }}
+                    </p>
 
                     <div class="mt-4 flex items-center justify-between">
                         <span class="text-sm px-2 py-1 rounded 
@@ -66,21 +75,21 @@
                                     @method('PATCH')
                                     <button type="submit"
                                             class="text-sm bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">
-                                        Tamamla
+                                        ✔️ Tamamla
                                     </button>
                                 </form>
                             @endif
 
                             <a href="{{ route('tasks.edit', $task) }}"
                                class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
-                                Düzenle
+                                ✏️ Düzenle
                             </a>
 
                             <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?')" class="px-3 py-1 text-sm bg-red-600 hover:bg-red-700 text-white rounded-md transition">
-                                    Sil
+                                    🗑️ Sil
                                 </button>
                             </form>
                         </div>
