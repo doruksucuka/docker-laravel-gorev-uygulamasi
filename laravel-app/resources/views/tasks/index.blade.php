@@ -42,9 +42,7 @@
                     @if($task->categories && $task->categories->count())
                         <div class="flex flex-wrap gap-2 mt-2">
                             @foreach ($task->categories as $category)
-                                <span class="text-xs px-2 py-1 rounded font-medium 
-                                             bg-blue-200 text-blue-900 
-                                             dark:bg-blue-500 dark:text-white">
+                                <span class="px-2 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 hover:opacity-80 transition" title="{{ $category->description ?? $category->name }}">
                                     {{ $category->name }}
                                 </span>
                             @endforeach
