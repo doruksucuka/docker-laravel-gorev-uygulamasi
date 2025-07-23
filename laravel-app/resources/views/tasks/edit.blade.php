@@ -41,16 +41,9 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="categories" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Kategoriler</label>
-                            <select name="categories[]" id="categories" multiple
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:text-white">
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}"
-                                        @if ($task->categories->contains($category->id)) selected @endif>
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Kategoriler</label>
+                            <x-category-select :categories="$categories" :selected="$task->categories->pluck('id')" />
+
                         </div>
 
                         <div class="flex justify-end">
