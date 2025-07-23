@@ -30,7 +30,7 @@
             <input x-model="search" type="text" placeholder="Ara…" class="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 focus:outline-none text-sm" />
         </div>
         <template x-for="option in filteredOptions" :key="'opt'+option.id">
-            <div @click="select(option)" class="px-3 py-2 cursor-pointer text-sm hover:bg-gray-100 dark:hover:bg-gray-700" :class="isSelected(option.id) ? 'bg-gray-100 dark:bg-gray-700' : ''" x-text="option.name"></div>
+            <div @click="select(option)" class="px-3 py-2 cursor-pointer text-sm text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" :class="isSelected(option.id) ? 'bg-gray-100 dark:bg-gray-700' : ''" x-text="option.name"></div>
         </template>
         <div x-show="filteredOptions.length === 0" class="p-3 text-sm text-gray-500">Sonuç yok</div>
     </div>
