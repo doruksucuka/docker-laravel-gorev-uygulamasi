@@ -24,7 +24,7 @@
     </div>
 
     <!-- Dropdown -->
-    <div x-show="open" @click.outside="open=false" class="absolute z-10 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md max-h-60 overflow-y-auto shadow-lg">
+    <div x-show="open" @click.outside="open=false" class="absolute z-50 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md max-h-60 overflow-y-auto shadow-lg">
         <!-- Search -->
         <div class="p-2">
             <input x-model="search" type="text" placeholder="Ara…" class="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 focus:outline-none text-sm" />
