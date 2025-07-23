@@ -41,6 +41,14 @@
                         </div>
 
                         <div class="mb-4">
+                            <label for="is_completed" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Durum</label>
+                            <select name="is_completed" id="is_completed" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-800 dark:text-white">
+                                <option value="0" {{ !$task->is_completed ? 'selected' : '' }}>⏳ Beklemede</option>
+                                <option value="1" {{ $task->is_completed ? 'selected' : '' }}>✅ Tamamlandı</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Kategoriler</label>
                             <x-category-select :categories="$categories" :selected="$task->categories->pluck('id')" />
 

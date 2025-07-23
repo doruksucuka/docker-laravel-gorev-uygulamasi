@@ -46,6 +46,7 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'due_date' => 'nullable|date',
+            'is_completed' => 'required|boolean',
             'categories' => 'nullable|array',
             'categories.*' => 'exists:categories,id',
         ]);
@@ -54,6 +55,7 @@ class TaskController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'due_date' => $request->due_date,
+            'is_completed' => $request->boolean('is_completed'),
         ]);
 
         if ($request->has('categories')) {
@@ -85,6 +87,7 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'due_date' => 'nullable|date',
+            'is_completed' => 'required|boolean',
             'categories' => 'nullable|array',
             'categories.*' => 'exists:categories,id',
         ]);
@@ -93,6 +96,7 @@ class TaskController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'due_date' => $request->due_date,
+            'is_completed' => $request->boolean('is_completed'),
         ]);
 
         $task->categories()->sync($request->categories ?? []);
