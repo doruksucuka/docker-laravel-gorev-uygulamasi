@@ -49,6 +49,14 @@ class TaskPolicy
     }
 
     /**
+     * Determine whether the user can mark the task as complete.
+     */
+    public function complete(User $user, Task $task): bool
+    {
+        return $user->id === $task->user_id;
+    }
+
+    /**
      * Determine whether the user can restore the model.
      */
     public function restore(User $user, Task $task): bool
