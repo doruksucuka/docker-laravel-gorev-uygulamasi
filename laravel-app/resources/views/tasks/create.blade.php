@@ -28,14 +28,8 @@
                     </div>
 
                     <div class="mb-5">
-                        <label for="categories" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Kategoriler</label>
-                        <select name="categories[]" id="categories" multiple
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:bg-gray-700 dark:text-white">
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                        <p class="text-xs text-gray-500 mt-1">Ctrl (Cmd) tuşu ile birden fazla seçim yapabilirsiniz.</p>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Kategoriler</label>
+                        <x-category-select :categories="$categories" />
                     </div>
 
                     <div class="flex justify-between items-center mt-6">
