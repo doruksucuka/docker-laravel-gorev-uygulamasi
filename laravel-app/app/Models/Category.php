@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'user_id'];
+    
+    protected $with = ['user'];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function tasks()
     {

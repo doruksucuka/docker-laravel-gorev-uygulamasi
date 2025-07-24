@@ -34,6 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/tasks/{task}/complete', [TaskController::class, 'complete'])->name('tasks.complete');
     // Görev CRUD işlemleri için resource route
     Route::resource('tasks', TaskController::class);
+    
+    // Kategori oluşturma için route
+    Route::post('/categories', [\App\Http\Controllers\CategoryController::class, 'store'])
+        ->name('categories.store');
 });
 
 require __DIR__.'/auth.php';

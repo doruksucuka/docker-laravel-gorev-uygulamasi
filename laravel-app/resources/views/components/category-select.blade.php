@@ -32,7 +32,15 @@
         <template x-for="option in filteredOptions" :key="'opt'+option.id">
             <div @click="select(option)" class="px-3 py-2 cursor-pointer text-sm text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700" :class="isSelected(option.id) ? 'bg-gray-100 dark:bg-gray-700' : ''" x-text="option.name"></div>
         </template>
-        <div x-show="filteredOptions.length === 0" class="p-3 text-sm text-gray-500">Sonuç yok</div>
+        <div x-show="filteredOptions.length === 0 && !search" class="p-3 text-sm text-gray-500">Sonuç yok</div>
+        
+        <!-- Add new category option -->
+        <div x-show="filteredOptions.length === 0 && search" 
+             @click="addNewCategory()"
+             class="px-3 py-2 cursor-pointer text-sm text-blue-600 dark:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2">
+            <span>➕</span>
+            <span>"<span x-text="search"></span>" kategorisini ekle</span>
+        </div>
     </div>
 
     <!-- Hidden inputs -->
@@ -49,7 +57,9 @@
                 selected,
                 search: '',
                 open: false,
-                toggle() { this.open = !this.open; this.search=''; },
+                loading: false,
+                error: null,
+                toggle() { this.open = !this.open; this.search=''; this.error = null; },
                 get selectedOptions() {
                     return this.options.filter(o => this.selected.includes(o.id));
                 },
@@ -59,6 +69,7 @@
                     } else {
                         this.remove(option.id);
                     }
+                    this.open = false;
                 },
                 remove(id) {
                     this.selected = this.selected.filter(i => i !== id);
@@ -66,7 +77,49 @@
                 isSelected(id) { return this.selected.includes(id); },
                 get filteredOptions() {
                     if (!this.search) return this.options;
-                    return this.options.filter(o => o.name.toLowerCase().includes(this.search.toLowerCase()));
+                    return this.options.filter(o => 
+                        o.name.toLowerCase().includes(this.search.toLowerCase())
+                    );
+                },
+                async addNewCategory() {
+                    if (!this.search.trim()) return;
+                    
+                    this.loading = true;
+                    this.error = null;
+                    
+                    try {
+                        const response = await fetch('{{ route('categories.store') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Accept': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            body: JSON.stringify({
+                                name: this.search.trim()
+                            })
+                        });
+                        
+                        if (!response.ok) {
+                            const error = await response.json();
+                            throw new Error(error.message || 'Kategori eklenirken bir hata oluştu');
+                        }
+                        
+                        const newCategory = await response.json();
+                        this.options.push({
+                            id: newCategory.id,
+                            name: newCategory.name
+                        });
+                        this.select({ id: newCategory.id });
+                        this.search = '';
+                    } catch (error) {
+                        console.error('Category creation failed:', error);
+                        this.error = error.message || 'Kategori eklenirken bir hata oluştu';
+                        setTimeout(() => { this.error = null; }, 3000);
+                    } finally {
+                        this.loading = false;
+                    }
                 }
             }
         }
