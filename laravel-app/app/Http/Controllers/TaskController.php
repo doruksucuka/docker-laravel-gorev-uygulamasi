@@ -29,9 +29,18 @@ class TaskController extends Controller
             $query->where('title', 'like', '%' . request('search') . '%');
         }
 
-        $tasks = $query->orderBy('created_at', 'desc')->get();
+        if (request()->has('category') && request('category') !== '') {
+            $query->whereHas('categories', function ($q) {
+                $q->where('categories.id', request('category'));
+            });
+        }
 
-        return view('tasks.index', compact('tasks'));
+        $tasks = $query->orderBy('created_at', 'desc')->get();
+        
+        // Get all categories for the filter dropdown
+        $categories = Category::where('user_id', Auth::id())->get();
+
+        return view('tasks.index', compact('tasks', 'categories'));
     }
 
     public function create()

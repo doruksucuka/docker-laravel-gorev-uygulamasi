@@ -14,6 +14,17 @@
                     <option value="completed" {{ request('status') === 'completed' ? 'selected' : '' }}>Tamamlanan</option>
                     <option value="pending" {{ request('status') === 'pending' ? 'selected' : '' }}>Bekleyen</option>
                 </select>
+                
+                @if(isset($categories))
+                    <select name="category" class="px-4 py-2 rounded border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Tüm Kategoriler</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                @endif
 
                 <button type="submit"
                         class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition">
