@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Görevler') }}
             </h2>
-            <form method="GET" action="{{ route('tasks.index') }}" class="flex items-center gap-2 flex-wrap">
+            <form method="GET" action="{{ route('tasks.index') }}" class="flex items-center gap-2 flex-wrap" id="task-filter-form">
                 <input type="text" name="search" placeholder="Görev ara..."
                        value="{{ request('search') }}"
                        class="px-4 py-2 rounded border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -36,6 +36,26 @@
                     Filtreleri Temizle
                 </a>
             </form>
+
+            <script>
+                document.getElementById('task-filter-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(e.target);
+                    const params = new URLSearchParams();
+                    
+                    // Only add non-empty values to params
+                    for (const [key, value] of formData.entries()) {
+                        if (value !== '') {
+                            params.append(key, value);
+                        }
+                    }
+                    
+                    // Redirect to the same page with clean query parameters
+                    window.location.href = e.target.action + (params.toString() ? '?' + params.toString() : '');
+                });
+            </script>
         </div>
     </x-slot>
 
