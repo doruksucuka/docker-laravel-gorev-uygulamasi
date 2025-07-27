@@ -35,9 +35,15 @@ Route::middleware('auth')->group(function () {
     // Görev CRUD işlemleri için resource route
     Route::resource('tasks', TaskController::class);
     
-    // Kategori oluşturma için route
+    // Kategori işlemleri için route
+    Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'index'])
+        ->name('categories.index');
     Route::post('/categories', [\App\Http\Controllers\CategoryController::class, 'store'])
         ->name('categories.store');
+    Route::put('/categories/{category}', [\App\Http\Controllers\CategoryController::class, 'update'])
+        ->name('categories.update');
+    Route::delete('/categories/{category}', [\App\Http\Controllers\CategoryController::class, 'destroy'])
+        ->name('categories.destroy');
 });
 
 require __DIR__.'/auth.php';
