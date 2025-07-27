@@ -105,16 +105,20 @@
                                 </form>
                             @endif
 
-                            <span class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 cursor-pointer" onclick="window.location='{{ route('tasks.edit', $task) }}'">
+                            <button type="button"
+                                    class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 cursor-pointer"
+                                    onclick="window.location='{{ route('tasks.edit', $task) }}'">
                                 Düzenle
-                            </span>
+                            </button>
 
                             <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                            <span class="text-sm bg-red-600 hover:bg-red-700 text-white rounded-md transition cursor-pointer" onclick="event.preventDefault(); if(confirm('Bu görevi silmek istediğinizden emin misiniz?')) { document.getElementById('delete-form-{{ $task->id }}').submit(); }">
+                            <button type="button"
+                                    class="text-sm bg-red-600 hover:bg-red-700 text-white rounded-md transition cursor-pointer"
+                                    onclick="event.preventDefault(); if(confirm('Bu görevi silmek istediğinizden emin misiniz?')) { document.getElementById('delete-form-{{ $task->id }}').submit(); }">
                                 Sil
-                            </span>
+                            </button>
                             <form id="delete-form-{{ $task->id }}" action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')
