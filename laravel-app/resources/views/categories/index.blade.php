@@ -51,7 +51,7 @@
                                     <button type="button" 
                                             onclick="addCategory()"
                                             id="addButton"
-                                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-lg font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
                                         Add Category
                                     </button>
                                     <button type="button" 
@@ -103,7 +103,7 @@
                                     </button>
                                     <button type="button" 
                                             onclick="closeEditModal()"
-                                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-600 text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-600 text-lg font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                                         Cancel
                                     </button>
                                 </div>
@@ -126,12 +126,17 @@
                                             <button type="button" 
                                                     onclick="openEditModal({{ $category->id }}, '{{ $category->name }}')"
                                                     class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
-                                                Edit
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232a3 3 0 00-4.243 0L3 12.586V17h4.414l8.989-8.989a3 3 0 000-4.243z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.5l4 4M3 21h18" />
+                                                </svg>
                                             </button>
                                             <button type="button" 
                                                     onclick="deleteCategory({{ $category->id }}, '{{ $category->name }}')"
                                                     class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
-                                                Delete
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
                                             </button>
                                         </div>
                                     </li>
