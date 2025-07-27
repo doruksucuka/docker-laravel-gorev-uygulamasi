@@ -37,7 +37,7 @@
         <!-- Add new category option -->
         <div x-show="filteredOptions.length === 0 && search" 
              @click="addNewCategory()"
-             class="px-3 py-2 cursor-pointer text-sm text-blue-600 dark:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2">
+             class="px-3 py-2 cursor-pointer text-sm text-green-600 dark:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center gap-2">
             <span>➕</span>
             <span>"<span x-text="search"></span>" kategorisini ekle</span>
         </div>

@@ -30,6 +30,11 @@
                         class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition">
                     Filtrele
                 </button>
+                
+                <a href="{{ route('tasks.index') }}"
+                   class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium transition">
+                    Filtreleri Temizle
+                </a>
             </form>
         </div>
     </x-slot>
