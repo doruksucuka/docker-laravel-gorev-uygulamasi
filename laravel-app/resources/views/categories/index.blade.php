@@ -19,13 +19,13 @@
                     </div>
 
                     <!-- Add Category Modal -->
-                    <div id="addModal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+                    <div id="addModal" role="dialog" aria-modal="true" aria-labelledby="addModalTitle" class="fixed inset-0 z-50 overflow-y-auto hidden">
                         <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
                             <div class="fixed inset-0 transition-opacity bg-gray-500 opacity-75"></div>
                             
                             <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
                             
-                            <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                            <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" tabindex="-1">
                                 <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                     <div class="sm:flex sm:items-start">
                                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
@@ -42,7 +42,7 @@
                                                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200"
                                                            placeholder="Enter category name">
                                                 </div>
-                                                <div id="addError" class="mt-2 text-sm text-red-600 dark:text-red-400 hidden"></div>
+                                                <div id="addError" class="mt-2 text-lg font-bold text-red-600 dark:text-red-400 bg-red-100 p-2 rounded-md hidden"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -65,13 +65,13 @@
                     </div>
 
                     <!-- Edit Category Modal -->
-                    <div id="editModal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+                    <div id="editModal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle" class="fixed inset-0 z-50 overflow-y-auto hidden">
                         <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
                             <div class="fixed inset-0 transition-opacity bg-gray-500 opacity-75"></div>
                             
                             <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
                             
-                            <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                            <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" tabindex="-1">
                                 <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                     <div class="sm:flex sm:items-start">
                                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
@@ -89,7 +89,7 @@
                                                            placeholder="Enter category name">
                                                     <input type="hidden" id="editCategoryId">
                                                 </div>
-                                                <div id="editError" class="mt-2 text-sm text-red-600 dark:text-red-400 hidden"></div>
+                                                <div id="editError" class="mt-2 text-lg font-bold text-red-600 dark:text-red-400 bg-red-100 p-2 rounded-md hidden"></div>
                                             </div>
                                         </div>
                                     </div>

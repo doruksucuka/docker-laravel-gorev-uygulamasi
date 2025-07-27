@@ -18,7 +18,7 @@ class CategoryController extends Controller
         if (Auth::check()) {
             $categories = Auth::user()->categories()->orderBy('name')->get();
         } else {
-            $categories = \App\Models\Category::where('user_id', 1)->orderBy('name')->get();
+            return response()->json(['message' => 'Unauthorized'], 403);
         }
         return view('categories.index', compact('categories'));
     }
@@ -98,7 +98,7 @@ class CategoryController extends Controller
 
         // Check if the category has tasks
         if ($category->tasks()->count() > 0) {
-            return response()->json(['message' => 'Cannot delete category with tasks'], 400);
+            return response()->json(['message' => 'You cannot delete this category because it has associated tasks. Please remove the tasks first.'], 400);
         }
 
         $category->delete();
