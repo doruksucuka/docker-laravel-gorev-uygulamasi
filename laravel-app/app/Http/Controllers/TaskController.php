@@ -45,7 +45,7 @@ class TaskController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('user_id', Auth::id())->get();
         return view('tasks.create', compact('categories'));
     }
 
@@ -84,7 +84,7 @@ class TaskController extends Controller
     {
         $this->authorize('update', $task);
 
-        $categories = Category::all();
+        $categories = Category::where('user_id', Auth::id())->get();
         return view('tasks.edit', compact('task', 'categories'));
     }
 
