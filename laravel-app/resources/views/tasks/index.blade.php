@@ -111,18 +111,14 @@
                                 Düzenle
                             </button>
 
-                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
+                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
-                            <button type="button"
-                                    class="text-sm bg-red-600 hover:bg-red-700 text-white rounded-md transition cursor-pointer"
-                                    onclick="event.preventDefault(); if(confirm('Bu görevi silmek istediğinizden emin misiniz?')) { document.getElementById('delete-form-{{ $task->id }}').submit(); }">
-                                Sil
-                            </button>
-                            <form id="delete-form-{{ $task->id }}" action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: none;">
-                                @csrf
-                                @method('DELETE')
-                            </form>
+                                <button type="submit"
+                                        class="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md transition cursor-pointer"
+                                        onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?')">
+                                    Sil
+                                </button>
                             </form>
                         </div>
                     </div>

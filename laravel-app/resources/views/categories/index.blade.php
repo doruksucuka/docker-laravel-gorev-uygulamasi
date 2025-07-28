@@ -21,42 +21,42 @@
                     <!-- Add Category Modal -->
                     <div id="addModal" role="dialog" aria-modal="true" aria-labelledby="addModalTitle" class="fixed inset-0 z-50 overflow-y-auto hidden">
                         <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-                            <div class="fixed inset-0 transition-opacity bg-gray-500 opacity-75"></div>
+                            <div class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75 dark:bg-gray-900 dark:bg-opacity-75"></div>
                             
                             <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
                             
                             <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" tabindex="-1">
-                                <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                <div class="bg-white dark:bg-gray-800 px-6 py-4">
                                     <div class="sm:flex sm:items-start">
                                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                                            <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100 mb-4">
+                                            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-6" id="addModalTitle">
                                                 Add New Category
                                             </h3>
-                                            <div class="mt-2">
+                                            <div class="space-y-4">
                                                 <div>
-                                                    <label for="categoryName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                                    <label for="categoryName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                                         Category Name
                                                     </label>
-                                                    <input type="text" 
+                                                    <input type="text"
                                                            id="categoryName"
-                                                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200"
+                                                           class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:focus:ring-blue-400 dark:focus:border-blue-400 transition-colors"
                                                            placeholder="Enter category name">
                                                 </div>
-                                                <div id="addError" class="mt-2 text-lg font-bold text-red-600 dark:text-red-400 bg-red-100 p-2 rounded-md hidden"></div>
+                                                <div id="addError" class="mt-2 text-sm font-medium text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 p-3 rounded-lg hidden"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                    <button type="button" 
+                                <div class="bg-gray-50 dark:bg-gray-700/50 px-6 py-4 sm:flex sm:flex-row-reverse sm:px-6">
+                                    <button type="button"
                                             onclick="addCategory()"
                                             id="addButton"
-                                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-lg font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                            class="w-full sm:w-auto inline-flex justify-center items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
                                         Add Category
                                     </button>
-                                    <button type="button" 
+                                    <button type="button"
                                             onclick="closeAddModal()"
-                                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-600 text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                                            class="mt-3 sm:mt-0 w-full sm:w-auto inline-flex justify-center items-center px-6 py-3 bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 text-sm font-medium rounded-lg shadow-sm border border-gray-300 dark:border-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
                                         Cancel
                                     </button>
                                 </div>
@@ -125,12 +125,18 @@
                                         <div class="flex items-center space-x-4">
                                             <button type="button"
                                                     onclick="openEditModal({{ $category->id }}, '{{ $category->name }}')"
-                                                    class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 text-sm px-2 py-1 border border-blue-600 rounded">
+                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-blue-600 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-900/50 dark:text-blue-300 dark:hover:bg-blue-900/70 transition-colors">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                                </svg>
                                                 Edit
                                             </button>
                                             <button type="button"
                                                     onclick="deleteCategory({{ $category->id }}, '{{ $category->name }}')"
-                                                    class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 text-sm px-2 py-1 border border-red-600 rounded">
+                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-red-600 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:bg-red-900/50 dark:text-red-300 dark:hover:bg-red-900/70 transition-colors">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                </svg>
                                                 Delete
                                             </button>
                                         </div>
