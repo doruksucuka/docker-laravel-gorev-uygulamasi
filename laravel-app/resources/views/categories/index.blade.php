@@ -123,20 +123,15 @@
                                             </span>
                                         </div>
                                         <div class="flex items-center space-x-4">
-                                            <button type="button" 
+                                            <button type="button"
                                                     onclick="openEditModal({{ $category->id }}, '{{ $category->name }}')"
-                                                    class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232a3 3 0 00-4.243 0L3 12.586V17h4.414l8.989-8.989a3 3 0 000-4.243z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.5l4 4M3 21h18" />
-                                                </svg>
+                                                    class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 text-sm px-2 py-1 border border-blue-600 rounded">
+                                                Edit
                                             </button>
-                                            <button type="button" 
+                                            <button type="button"
                                                     onclick="deleteCategory({{ $category->id }}, '{{ $category->name }}')"
-                                                    class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                                </svg>
+                                                    class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 text-sm px-2 py-1 border border-red-600 rounded">
+                                                Delete
                                             </button>
                                         </div>
                                     </li>
@@ -321,14 +316,14 @@
                                 <span class="text-lg font-medium text-gray-900 dark:text-gray-100 category-name">${category.name}</span>
                             </div>
                             <div class="flex items-center space-x-4">
-                                <button type="button" 
+                                <button type="button"
                                         onclick="openEditModal(${category.id}, '${category.name}')"
-                                        class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
+                                        class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 text-sm px-2 py-1 border border-blue-600 rounded">
                                     Edit
                                 </button>
-                                <button type="button" 
+                                <button type="button"
                                         onclick="deleteCategory(${category.id}, '${category.name}')"
-                                        class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                        class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 text-sm px-2 py-1 border border-red-600 rounded">
                                     Delete
                                 </button>
                             </div>
